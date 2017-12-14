@@ -1,10 +1,21 @@
 {
-  "name": "hexo-site",
+  "name": "hexo-theme-djantajs",
+  "description": "djantaJs knowlege hexo template",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "^7.0.0",
+    "npm": "^4.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/djanta/hexo-theme-djantajs.git"
+  },
   "hexo": {
     "version": ""
   },
+  "author": "team@djanta.io",
+  "license": "MIT",
   "dependencies": {
     "hexo": "^3.2.0",
     "hexo-generator-archive": "^0.1.4",
