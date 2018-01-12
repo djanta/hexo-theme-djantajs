@@ -45,41 +45,42 @@
 
 </head>
 <body class="landing-page">
-<script>
-  // nectar ninja
-  (function(){
-    var handle = '@djantajs', a = document.createElement('script'), m = document.getElementsByTagName('script')[0];
-    a.async = 1;
-    a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
-    m.parentNode.insertBefore(a, m);
-  })();
+  <%- body %>
+  <script>
+    // nectar ninja
+    (function(){
+      var handle = '@djantajs', a = document.createElement('script'), m = document.getElementsByTagName('script')[0];
+      a.async = 1;
+      a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+      m.parentNode.insertBefore(a, m);
+    })();
 
-  <% if(config.redirects) { %>
-    var REDIRECTS = <%- JSON.stringify(config.redirects, 0, 2) %> || {};
-    function redirect() {
-      // Support redirects of the form /path#hash
-      var locationKey = location.pathname + location.hash;
-      if(REDIRECTS[locationKey]) {
-        location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+    <% if(config.redirects) { %>
+      var REDIRECTS = <%- JSON.stringify(config.redirects, 0, 2) %> || {};
+      function redirect() {
+        // Support redirects of the form /path#hash
+        var locationKey = location.pathname + location.hash;
+        if(REDIRECTS[locationKey]) {
+          location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+        }
+        // Support redirects of the form #hash (works for any path)
+        var hashKey = location.hash;
+        if(REDIRECTS[hashKey]) {
+          location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+        }
       }
-      // Support redirects of the form #hash (works for any path)
-      var hashKey = location.hash;
-      if(REDIRECTS[hashKey]) {
-        location.replace(location.origin + '/' + REDIRECTS[hashKey]);
-      }
-    }
 
-    // Redirect now
-    redirect();
+      // Redirect now
+      redirect();
 
-    // Redirect on hash change
-    window.onhashchange = redirect;
-  <% } %>
-</script>
+      // Redirect on hash change
+      window.onhashchange = redirect;
+    <% } %>
+  </script>
 
-<!-- Main Javascript -->
-<script type="text/javascript" src="assets/plugins/jquery-1.12.3.min.js"></script>
-<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
-<script type="text/javascript" src="assets/js/main.js"></script>
+  <!-- Main Javascript -->
+  <script type="text/javascript" src="assets/plugins/jquery-1.12.3.min.js"></script>
+  <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="assets/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
+  <script type="text/javascript" src="assets/js/main.js"></script>
 </body>
