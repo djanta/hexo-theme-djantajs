@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <title><%- page.title %> | <%- config.title %></title>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content=<%- page.description %>"">
+  <meta name="author" content="">
+  <meta name="google-site-verification" content="" />
+
+  <!-- Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="<%- config.url %>">
+  <meta property="og:title" content="<%- page.title %> | <%- config.title %>">
+  <meta property="og:description" content="<%- page.description %>">
+  <meta property="og:image" content="<%- config.logo && config.logo.desktop || theme.logo.desktop %>">
+  <meta name="twitter:card" content="summary_image_large">
+  <meta name="twitter:site" content="<%- theme.social_links.twitter %>">
+  <meta name="twitter:title" content="<%- page.title %> | <%- config.title %>">
+  <meta name="twitter:description" content="<%- page.description %>">
+  <meta name="twitter:image" content="<%- config.logo && config.logo.desktop || theme.logo.desktop %>">
+
+  <!-- Misc -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+  <link rel="shortcut icon" type="image/png" href="<%- theme.favicon || 'https://www.djantajs.io/favicon.png'%>" sizes="16x16 32x32 64x64">
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<body class="landing-page">
+<script>
+  // nectar ninja
+  (function(){
+    var handle = '@djantajs', a = document.createElement('script'), m = document.getElementsByTagName('script')[0];
+    a.async = 1;
+    a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+    m.parentNode.insertBefore(a, m);
+  })();
+
+  <% if(config.redirects) { %>
+    var REDIRECTS = <%- JSON.stringify(config.redirects, 0, 2) %> || {};
+    function redirect() {
+      // Support redirects of the form /path#hash
+      var locationKey = location.pathname + location.hash;
+      if(REDIRECTS[locationKey]) {
+        location.replace(location.origin + '/' + REDIRECTS[locationKey]);
+      }
+      // Support redirects of the form #hash (works for any path)
+      var hashKey = location.hash;
+      if(REDIRECTS[hashKey]) {
+        location.replace(location.origin + '/' + REDIRECTS[hashKey]);
+      }
+    }
+
+    // Redirect now
+    redirect();
+
+    // Redirect on hash change
+    window.onhashchange = redirect;
+  <% } %>
+</script>
+
+<!-- Main Javascript -->
+<script type="text/javascript" src="assets/plugins/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
+</body>

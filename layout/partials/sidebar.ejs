@@ -1,0 +1,23 @@
+<!--//doc-content-->
+<div class="doc-sidebar hidden-xs">
+  <nav id="doc-nav">
+    <ul id="doc-menu" class="nav doc-menu" data-spy="affix">
+      <% _.each(config.sidebar_categories, function(pages, category) { %>
+      <li>
+        <% if (category !== 'null') { %>
+        <a class="scrollto"><%- category %></a>
+        <% } %>
+        <ul class="nav doc-sub-menu">
+          <% pages.forEach(function(path) { %>
+          <% p = site.pages.findOne({path: path + '.html'}); %>
+          <li class="scrollto">
+            <a href="<%- relative_url(page.path, p.path) %>"><%- p.title %></a>
+          </li>
+          <% }); %>
+        </ul>
+      </li>
+      <% }); %>
+    </ul><!--//doc-menu-->
+  </nav>
+</div>
+<!--//doc-sidebar-->
