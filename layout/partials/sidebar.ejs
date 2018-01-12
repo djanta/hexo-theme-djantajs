@@ -8,7 +8,7 @@
         <a class="scrollto"><%- category %></a>
         <% } %>
         <ul class="nav doc-sub-menu">
-          <% pages.forEach(function(path) { %>
+          <% (pages || []).forEach(function(path) { %>
           <% p = site.pages.findOne({path: path + '.html'}); %>
           <li class="scrollto">
             <a href="<%- relative_url(page.path, p.path) %>"><%- p.title %></a>
